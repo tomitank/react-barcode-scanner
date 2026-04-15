@@ -19,11 +19,13 @@ function BarcodeScanner({
   videoContainerStyle,
   videoStyle,
   videoProps: passedVideoProps,
-}: Props) {
+}: Props)
+{
   const [isCameraInitialized, setIsCameraInitialized] = useState(false);
   const videoElement = useRef<HTMLVideoElement>(null);
   const controlsRef = useRef<IScannerControls|undefined>(null);
   const isShowingDisabledImage = !isCameraInitialized || !doScan;
+
   const codeReader = useMemo(() => {
     if (formats && formats.length > 0) {
       const hints = new Map();
@@ -34,6 +36,7 @@ function BarcodeScanner({
   }, [formats]);
 
   useEffect(() => {
+
     if (!doScan) return;
 
     let cancelled = false;
@@ -58,12 +61,11 @@ function BarcodeScanner({
       cancelled = true;
       controlsRef.current?.stop?.();
       controlsRef.current = undefined;
-
-      if (videoElement.current?.srcObject) {
+      /*if (videoElement.current?.srcObject) {
         const stream = videoElement.current.srcObject as MediaStream;
-        stream.getTracks().forEach(t => t.stop());
+        stream?.getTracks().forEach(t => t.stop());
         videoElement.current.srcObject = null;
-      }
+      }*/
     };
   }, [onSuccess, onError, doScan, codeReader, constraints]);
 
@@ -75,7 +77,7 @@ function BarcodeScanner({
 
       if (eventTarget.readyState === eventTarget.HAVE_ENOUGH_DATA) {
         setIsCameraInitialized(true);
-        onLoad?.();
+        onLoad?.(eventTarget);
       }
     };
 
@@ -96,6 +98,7 @@ function BarcodeScanner({
     if (typeof passedVideoProps !== 'function') return passedVideoProps;
 
     return passedVideoProps(defaultVideoProps);
+
   }, [constraints.facingMode, onLoad, passedVideoProps, videoStyle]);
 
   return (
