@@ -26,7 +26,7 @@ export interface BarcodeScannerProps {
   /**
    * Callback for when the video feed has been loaded
    */
-  onLoad?: (video: HTMLVideoElement | null) => void;
+  onLoad?: () => void;
   /**
    * Property that represents the viewfinder component
    */

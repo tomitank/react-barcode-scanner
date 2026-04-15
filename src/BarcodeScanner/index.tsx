@@ -61,11 +61,12 @@ function BarcodeScanner({
       cancelled = true;
       controlsRef.current?.stop?.();
       controlsRef.current = undefined;
-      /*if (videoElement.current?.srcObject) {
+
+      if (videoElement.current?.srcObject) {
         const stream = videoElement.current.srcObject as MediaStream;
         stream?.getTracks().forEach(t => t.stop());
         videoElement.current.srcObject = null;
-      }*/
+      }
     };
   }, [onSuccess, onError, doScan, codeReader, constraints]);
 
@@ -77,7 +78,7 @@ function BarcodeScanner({
 
       if (eventTarget.readyState === eventTarget.HAVE_ENOUGH_DATA) {
         setIsCameraInitialized(true);
-        onLoad?.(eventTarget);
+        onLoad?.();
       }
     };
 
