@@ -28,10 +28,6 @@ export interface BarcodeScannerProps {
    */
   onLoad?: () => void;
   /**
-   * Callback for when the video feed has been unloaded
-   */
-  onUnload?: () => void;
-  /**
    * Property that represents the viewfinder component
    */
   Viewfinder?: () => ReactElement | null;
