@@ -1,8 +1,8 @@
 {
   "name": "react-barcode-scanner-tomitank",
-  "version": "1.0.3",
+  "version": "1.0.7",
   "description": "A React component for scanning QR codes and other barcodes via webcam",
-  "author": "Marcel Grünwald",
+  "author": "Tamas Kuzmics (was Marcel Grünwald)",
   "license": "MIT",
   "type": "module",
   "repository": {

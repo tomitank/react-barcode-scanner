@@ -14,6 +14,7 @@ function BarcodeScanner({
   onSuccess,
   onError,
   onLoad,
+  onUnload,
   Viewfinder,
   containerStyle,
   videoContainerStyle,
@@ -67,8 +68,9 @@ function BarcodeScanner({
         stream?.getTracks().forEach(t => t.stop());
         videoElement.current.srcObject = null;
       }
+      onUnload?.();
     };
-  }, [onSuccess, onError, doScan, codeReader, constraints]);
+  }, [onSuccess, onError, onUnload, doScan, codeReader, constraints]);
 
   const videoProps = useMemo(() => {
     const onLoadedData: ReactEventHandler<HTMLVideoElement> = ({ nativeEvent }) => {
